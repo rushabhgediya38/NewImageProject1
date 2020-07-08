@@ -1,0 +1,82 @@
+{% extends 'basic.html' %}
+
+
+{% block css %}
+        .all{
+        color: #212529;
+width: 100%;
+font-weight: 400;
+background-color: transparent;
+border: 0;
+
+        }
+
+
+        .dropdown {
+            display: block;
+            width: 100%;
+            padding: .25rem 1.5rem;
+            clear: both;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            white-space: nowrap;
+            background-color: transparent;
+            border: 0;
+        }
+{% endblock css %}
+
+<body>
+    {% block body %}
+    <div class="row">
+        <!--            tis is for category ssearch-->
+        <div class="col-md-2">
+            <div class="container">
+                {% for message in messages%}
+                <div class="alert alert-success"  role="alert">{{message}}</div>
+                {% endfor %}
+            <div class="all">
+            <a href="/appofimage/" class="list-group-item list-group-item-action mt-4 mx-3">All Images</a>
+            </div>
+            <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle mt-4 mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      {% for cat in cats %}
+<!--                    <a href="" class="dropdown-item" href="#">{{cat.cat_title}}</a>-->
+                      <a href="/category/{{cat.pk}}" class="list-group-item list-group-item-action">{{cat.cat_title}}</a>
+                      {% endfor %}
+                  </div>
+             </div>
+
+
+        </div>
+            </div>
+        <!--            this is for our category of image show in different cart-->
+
+        <div class="col-md-10">
+            <div class="p-3 mb-2 bg-light text-dark">
+            <div class="card-columns mt-3">
+                {% for i in images %}
+                <div class="card">
+                    <img src="/media/{{i.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.post_title}}</h5>
+                        <p class="card-text">{{i.post_dec}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+     </div>
+
+</div>
+    {% endblock body%}
+    <!--navbar end-->
+    {% block js %}
+    
+    {% endblock js %}
+</body>
+
+</html>
